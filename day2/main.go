@@ -51,6 +51,16 @@ func main() {
 	for _, report := range reports {
 		if isValid(report) {
 			validReports += 1
+		} else {
+			// part 2
+			for i := range len(report) {
+				repCopy := append([]int{}, report...)
+				subreport := append(repCopy[:i], repCopy[i+1:]...)
+				if isValid(subreport) {
+					validReports += 1
+					break
+				}
+			}
 		}
 	}
 	fmt.Println(validReports)
